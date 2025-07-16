@@ -1,8 +1,7 @@
 from rest_framework import viewsets
 from .models import Quest, QuestProgress
 from .serializers import QuestSerializer, QuestProgressSerializer
-from core.permissions import IsOwnerOrAdmin
-from rest_framework import permissions
+from core.permissions import IsAdminOrReadOnly, IsOwnerOrAdmin
 from drf_spectacular.utils import extend_schema
 
 @extend_schema(
@@ -13,7 +12,7 @@ class QuestViewSet(viewsets.ModelViewSet):
 
     queryset = Quest.objects.all()
     serializer_class = QuestSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsAdminOrReadOnly]
 
     search_fields = ['title', 'description']
     ordering_fields = ['created_at', 'title', 'required_level'] 

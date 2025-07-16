@@ -88,10 +88,10 @@ WSGI_APPLICATION = 'game_csm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
+        'NAME': os.getenv('DB_NAME', "gamecms"),
+        'USER': os.getenv('DB_USER', "postgres"),
+        'PASSWORD': os.getenv('DB_PASSWORD', ""),
+        'HOST': os.getenv('DB_HOST', "localhost"),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
@@ -156,6 +156,14 @@ REST_FRAMEWORK = {
     
     'SEARCH_PARAM': 'search',
     'ORDERING_PARAM': 'ordering',
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/day',
+        'user': '1000/day'
+    }
 
 }
 

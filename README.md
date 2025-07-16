@@ -13,6 +13,17 @@ It uses JWT authentication, role-based permissions, PostgreSQL, and auto-documen
 - Simple JWT (JSON Web Tokens)
 - drf-spectacular (Swagger / OpenAPI)
 - PostgreSQL
+- Docker & Docker-compose
+
+---
+
+## 📘 DRF Elements
+
+- `Pagination` - Shows 10 items on a page.
+- `Permissions` - IsAdminOrReadOnly, IsOwner, AllowAny, etc.
+- `Search Filter` - Search item by any value.
+- `Order Filter` - Order items by any value
+- `Throttle` - Limit to 10 or 1000 requests per day for anonymous or auth user respectively.
 
 ---
 
@@ -68,9 +79,7 @@ Auto-generated via `drf-spectacular`:
 ## 🧪 Next Steps
 
 - ✅ Add Pytest for testing
-- ✅ Add Docker and Docker Compose with PostgreSQL
 - ✅ Add CI/CD (GitHub Actions)
-- ✅ Implement throttling/rate-limiting
 
 ---
 

@@ -1,0 +1,30 @@
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: gamecms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DB_NAME: gamecms
+      DB_USER: postgres
+      DB_PASSWORD: yourpassword
+      DB_HOST: db
+      DB_PORT: 5432
+
+volumes:
+  pgdata:
